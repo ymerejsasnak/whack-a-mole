@@ -4,7 +4,7 @@ body {
 
 
 #field {
-	width: 90%;
+	width: 80%;
 	height: 80%;
 	margin: 2.5% auto;
 	box-sizing: border-box;
@@ -13,15 +13,18 @@ body {
 	box-shadow: 0 0 50px rgba(0,200,0,1);
 }
 
-.mole {
-	position: absolute;
+
+.hole, .mole {
 	width: 10%;
-	height: 15%;
-	background-color: brown;
-  border-radius: 50%;
+	height: 10%;
+	border-radius: 50%;
   border: 1px solid black;
+  background-color: black;
 }
 
+.mole {
+	background-color: brown;
+}
 
 
 
