@@ -8,7 +8,7 @@ $(function() {
   	
   	if (ticks % 5 === 0) {
   	  moles.push(createMole(moles));
-  	  updateMoles(moles);
+  	  moles = updateMoles(moles);
 
   	}
 
@@ -55,9 +55,13 @@ var updateMoles = function(moles) {
 	}
 
   //filter out deleted moles  !!!!!!!this isn't working!!!! why?????
-	moles =  moles.filter(function(value) {
+	var resultMoles = moles.filter(function(value) {
 		return value;
 	});
 
+  return resultMoles;
 };
+
+
+
 
