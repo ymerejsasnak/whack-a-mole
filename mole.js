@@ -5,7 +5,17 @@ $(function() {
   
 
   var intervalID = setInterval(function() {
-  	createMole(moles);
+  	
+  	if (ticks % 5 === 0) {
+  	  moles.push(createMole(moles));
+  	  updateMoles(moles);
+
+  	}
+
+  	    
+    console.log(moles)
+
+  	ticks++;
   }, 500);
 
 
@@ -18,20 +28,36 @@ $(function() {
 
 
 
-
-
-//need to seperate this shit out so moles can be individual objects with their own timers and points and sizes and shit
-
 var createMole = function(moles) {
-  var moleID = moles[moles.length - 1] + 1 || 0;
-  var x = Math.random() * 80 + 5;
-  var y = Math.random() * 60 + 2.5;
+  
+  mole = {id: moles.length,
+          x: Math.random() * 80 + 5,
+          y: Math.random() * 55 + 5,
+          life: 2};
+  
+  $("#field").append("<div class='mole' id='mole" + mole.id + "'>");
+  $("#mole" + mole.id).css({ top: mole.y + "%", left: mole.x + "%" });
 
-
-  $("#field").append("<div class='mole' id='mole" + moleID + "'>");
-  $("#mole" + moleID).css({ top: y + "%", left: x + "%" });
-
-
-  moles.push(moleID);
-  moleID++;
+  return mole;
 };
+
+
+
+
+var updateMoles = function(moles) {
+
+  for (var i = 0; i < moles.length; i++) {
+		moles[i].life--;
+		if (moles[i].life <= 0) {
+      $("#mole" + moles[i].id).remove();
+      moles[i] = false; //set to false for later removal, but don't cut yet because it will mess up loop
+    }
+	}
+
+  //filter out deleted moles  !!!!!!!this isn't working!!!! why?????
+	moles =  moles.filter(function(value) {
+		return value;
+	});
+
+};
+

@@ -8,17 +8,10 @@ body {
 	height: 80%;
 	margin: 2.5% auto;
 	box-sizing: border-box;
-	border: 1px solid black;
+	border-radius: 5%;
+	background: rgba(0,200,0,0.5);
+	box-shadow: 0 0 50px rgba(0,200,0,1);
 }
-
-#status {
-	width: 90%;
-	height: 10%;
-	margin: 0 auto;
-	box-sizing: border-box;
-	border: 1px solid black;
-}
-
 
 .mole {
 	position: absolute;
@@ -28,3 +21,22 @@ body {
   border-radius: 50%;
   border: 1px solid black;
 }
+
+
+
+
+#status {
+	width: 90%;
+	height: 10%;
+	margin: 0 auto;
+	box-sizing: border-box;
+	border: 1px solid black;
+}
+
+li {
+	display: inline-block;
+}
+
+
+
+
