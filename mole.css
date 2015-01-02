@@ -1,0 +1,30 @@
+body {
+	height: 90vh;
+}
+
+
+#field {
+	width: 90%;
+	height: 80%;
+	margin: 2.5% auto;
+	box-sizing: border-box;
+	border: 1px solid black;
+}
+
+#status {
+	width: 90%;
+	height: 10%;
+	margin: 0 auto;
+	box-sizing: border-box;
+	border: 1px solid black;
+}
+
+
+.mole {
+	position: absolute;
+	width: 10%;
+	height: 15%;
+	background-color: brown;
+  border-radius: 50%;
+  border: 1px solid black;
+}
