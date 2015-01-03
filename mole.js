@@ -1,19 +1,24 @@
+"use strict";
+
+
 $(function() {
 
   var ticks = 0;
   var moles = [];
+
+  createHoles();
   
 
   var intervalID = setInterval(function() {
   	
   	if (ticks % 5 === 0) {
-  	  moles.push(createMole(moles));
+  	  moles.push( createMole() );
+  	  
   	  moles = updateMoles(moles);
-
   	}
 
   	    
-    console.log(moles)
+    
 
   	ticks++;
   }, 500);
@@ -25,19 +30,22 @@ $(function() {
 
 
 
+var createHoles = function() {
+	for (var i = 0; i < 80; i++) {
+		$("#field").append("<div id='pos" + i + "' class='hole'></div>");
+	}
+}
 
 
 
-var createMole = function(moles) {
+
+var createMole = function() {
   
-  mole = {id: moles.length,
-          x: Math.random() * 80 + 5,
-          y: Math.random() * 55 + 5,
+  var mole = {position: Math.floor(Math.random() * 80),
           life: 2};
   
-  $("#field").append("<div class='mole' id='mole" + mole.id + "'>");
-  $("#mole" + mole.id).css({ top: mole.y + "%", left: mole.x + "%" });
-
+  $("#pos" + mole.position).addClass("mole");
+  
   return mole;
 };
 
@@ -49,7 +57,7 @@ var updateMoles = function(moles) {
   for (var i = 0; i < moles.length; i++) {
 		moles[i].life--;
 		if (moles[i].life <= 0) {
-      $("#mole" + moles[i].id).remove();
+      $("#pos" + moles[i].position).removeClass("mole");
       moles[i] = false; //set to false for later removal, but don't cut yet because it will mess up loop
     }
 	}
