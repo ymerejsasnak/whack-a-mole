@@ -1,6 +1,9 @@
 body {
 	height: 90vh;
+	background: lightgreen;
 }
+
+
 
 
 #field {
@@ -12,7 +15,6 @@ body {
 	background: rgba(0,200,0,0.5);
 	box-shadow: 0 0 50px rgba(0,200,0,1);
 }
-
 
 .hole {
 	float: left;
@@ -30,17 +32,20 @@ body {
 
 
 
+
 #status {
 	width: 90%;
 	height: 10%;
 	margin: 0 auto;
 	box-sizing: border-box;
 	border: 1px solid black;
+	background: white;
 }
 
 li {
 	display: inline-block;
 }
+
 
 
 
