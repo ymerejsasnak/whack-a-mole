@@ -40,11 +40,25 @@ body {
 	box-sizing: border-box;
 	border: 1px solid black;
 	background: white;
+	box-shadow: 2px 2px 5px black;
+}
+
+
+ul {
+	margin: 0 auto;
 }
 
 li {
 	display: inline-block;
+	margin: 1.5% 5%;
+	font-size: 2em;
 }
+
+li span {
+	font-family: courier, monospace;
+}
+
+
 
 
 

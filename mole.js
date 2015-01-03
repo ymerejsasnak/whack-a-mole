@@ -14,9 +14,9 @@ $(function() {
 
 
 
-
-  //'whacking' event handler
+  //'whacking' event handler (need to move this to its own function)
   $("#field").on("click", ".mole", function() {
+
     var id = $(this).attr("id");
     var position = parseInt( id.substring(3) );
 
@@ -30,26 +30,23 @@ $(function() {
     game.whacked++;
     game.score += game.level * 10;
 
-    console.log(game.whacked);
-
   });
-
 
 
 
   //game loop
   var intervalID = setInterval(function() {
   	
-  	if (game.ticks % 20 === 0) {
+  	if (game.ticks % 20 === 0) { //maybe can base this on number of moles also/instead
   	  game.moles.push( createMole() );
   	  game.moles.push( createMole() );
   	}
 
     game.moles = updateMoles(game.moles);
+    updateDisplay(game);
 
   	game.ticks++;
   }, 100);
-
 
 
 });
@@ -98,5 +95,13 @@ var updateMoles = function(moles) {
 };
 
 
+
+var updateDisplay = function(game) {
+	//$("#level")
+
+	$("#whacked").text(game.whacked);
+
+	$("#score").text(game.score);
+}
 
 
