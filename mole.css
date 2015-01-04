@@ -22,12 +22,16 @@ body {
 	height: 10%;
 	margin: 0.5% 1.9%;
 	border-radius: 50%;
+	box-sizing: border-box;
   border: 1px solid black;
 	background: linear-gradient(#222, #000);
 }
 
 .mole {
-	background: brown;
+	background-image: url("mole.png");
+	background-size: cover;
+	border: none;
+	border-radius: 0;
 }
 
 

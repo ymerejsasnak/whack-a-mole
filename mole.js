@@ -46,8 +46,8 @@ $(function() {
 
   	game.ticks++;
 
-    //increment level every 30 seconds (300 ticks * 100ms per tick) 
-    if (game.ticks % 300 === 0) {
+    //increment level every 20 seconds (200 ticks * 100ms per tick) 
+    if (game.ticks % 200 === 0) {
       game.level++;
     }
   }, 100);
