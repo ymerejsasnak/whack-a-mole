@@ -12,12 +12,13 @@ $(function() {
 
   createHoles();
 
-
+  
 
   //'whacking' event handler (need to move this to its own function)
   $("#field").on("click", ".mole", function() {
 
-    var id = $(this).attr("id");
+    var mole = $(this);
+    var id = mole.attr("id");
     var position = parseInt( id.substring(3) );
 
     var whackedMole = game.moles.filter( function(mole) {
@@ -27,8 +28,17 @@ $(function() {
     //whackedMole is an array but will only have 1 value in it so just use index 0
     game.moles[ game.moles.indexOf(whackedMole[0]) ].life = 0;
 
-    game.whacked++;
-    game.score += game.level * 10;
+    game.whacked++; //counts ALL moles
+
+    if (mole.hasClass("bonus")) {
+      game.score += game.level * 50;
+    }
+    else if (mole.hasClass("penalty")) {
+      game.score -= game.level * 20;
+    }
+    else {
+      game.score += game.level * 10;
+    }
 
   });
 
@@ -37,8 +47,16 @@ $(function() {
   //game loop
   var intervalID = setInterval(function() {
   	
+    //allow maximum number of moles per level
   	if (game.moles.length < game.level + 2) {
-  	  game.moles.push( createMole(game.level) );
+
+      game.moles.push( createMole(game.level) );
+      
+      //randomly add penalty moles (by nature of above test, penalties more likely as # of moles (ie levels) increases)
+      if ( Math.floor(Math.random() * 10) === 0) {
+        game.moles.push( createMole(game.level, "penalty") );
+      }
+      
   	}
 
     game.moles = updateMoles(game.moles);
@@ -49,6 +67,8 @@ $(function() {
     //increment level every 20 seconds (200 ticks * 100ms per tick) 
     if (game.ticks % 200 === 0) {
       game.level++;
+      //and create bonus mole at start of each level after 1
+      game.moles.push( createMole(game.level, "bonus") );
     }
   }, 100);
 
@@ -68,12 +88,16 @@ var createHoles = function() {
 
 
 
-var createMole = function(level) {
+var createMole = function(level, type) {
   
   var mole = {position: Math.floor(Math.random() * 80),
           life: 20 - level}; 
   
   $("#pos" + mole.position).addClass("mole");
+
+  if (type) {
+    $("#pos" + mole.position).addClass(type);
+  }
   
   return mole;
 };
@@ -85,7 +109,7 @@ var updateMoles = function(moles) {
   for (var i = 0; i < moles.length; i++) {
 		moles[i].life--;
 		if (moles[i].life <= 0) {
-      $("#pos" + moles[i].position).removeClass("mole");
+      $("#pos" + moles[i].position).removeClass("mole bonus penalty");
       moles[i] = false; //set to false for later removal, but don't cut yet because it will mess up loop
     }
 	}

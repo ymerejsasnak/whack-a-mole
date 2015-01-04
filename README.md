@@ -11,12 +11,6 @@ TO DO:
 
 -implement game end after level 10 (option to reload? or auto reload? or what?)
 
--implement bonus mole (randomly after level 3) (score 50 * level)
-
--implement penalty mole (randomly after level 5) (penalty 20 * level)
-
--replace brown div with mole image
-
 -maybe replace mouse cursor with mallet image (and seperate mallet image on mousedown?)
 
 -refactor click event handler and game loop into respective functions
