@@ -4,14 +4,19 @@ whack-a-mole
 Whack-A-Mole: simple html/js game
 
 
-change design to be more 'realistic'
-have discrete holes on board (maybe 10 by 10?)
-find hole image and mole image
 
-have moles speed up and maybe be more random as game goes on
-have two special moles appear randomly: extra points and minus points
-finite # of 'levels' (10?)
+TO DO:
 
-mole score: 10 * level
-special mole score: 50 * level ?
-bad mole score: - 10 * level ??
+-fix display so the status labels don't move when the numbers increase (ie 99 to 100)
+
+-implement game end after level 10
+
+-implement bonus mole (randomly after level 3) (score 50 * level)
+
+-implement penalty mole (randomly after level 5) (penalty 20 * level)
+
+-replace brown div with mole image
+
+-maybe replace mouse cursor with mallet image (and seperate mallet image on mousedown?)
+
+-refactor click event handler and game loop into respective functions

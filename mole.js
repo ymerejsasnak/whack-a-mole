@@ -37,15 +37,19 @@ $(function() {
   //game loop
   var intervalID = setInterval(function() {
   	
-  	if (game.ticks % 20 === 0) { //maybe can base this on number of moles also/instead
-  	  game.moles.push( createMole() );
-  	  game.moles.push( createMole() );
+  	if (game.moles.length < game.level + 2) {
+  	  game.moles.push( createMole(game.level) );
   	}
 
     game.moles = updateMoles(game.moles);
     updateDisplay(game);
 
   	game.ticks++;
+
+    //increment level every 30 seconds (300 ticks * 100ms per tick) 
+    if (game.ticks % 300 === 0) {
+      game.level++;
+    }
   }, 100);
 
 
@@ -64,10 +68,10 @@ var createHoles = function() {
 
 
 
-var createMole = function() {
+var createMole = function(level) {
   
   var mole = {position: Math.floor(Math.random() * 80),
-          life: 20};
+          life: 20 - level}; 
   
   $("#pos" + mole.position).addClass("mole");
   
@@ -97,7 +101,7 @@ var updateMoles = function(moles) {
 
 
 var updateDisplay = function(game) {
-	//$("#level")
+	$("#level").text(game.level);
 
 	$("#whacked").text(game.whacked);
 
