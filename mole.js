@@ -10,37 +10,16 @@ $(function() {
                ticks: 0 };
 
 
+  //set up game board
   createHoles();
 
   
 
-  //'whacking' event handler (need to move this to its own function)
-  $("#field").on("click", ".mole", function() {
-
-    var mole = $(this);
-    var id = mole.attr("id");
-    var position = parseInt( id.substring(3) );
-
-    var whackedMole = game.moles.filter( function(mole) {
-      return mole.position === position;
-    });
-   
-    //whackedMole is an array but will only have 1 value in it so just use index 0
-    game.moles[ game.moles.indexOf(whackedMole[0]) ].life = 0;
-
-    game.whacked++; //counts ALL moles
-
-    if (mole.hasClass("bonus")) {
-      game.score += game.level * 50;
-    }
-    else if (mole.hasClass("penalty")) {
-      game.score -= game.level * 20;
-    }
-    else {
-      game.score += game.level * 10;
-    }
-
+  //'whacking' event handler
+  $("#field").on( "click", ".mole", function() {
+    whack( game, $(this) ); 
   });
+
 
 
 
@@ -74,6 +53,9 @@ $(function() {
 
 
 });
+
+
+
 
 
 
@@ -133,3 +115,29 @@ var updateDisplay = function(game) {
 }
 
 
+
+var whack = function(game, mole) {
+
+  var id = mole.attr("id");
+  var position = parseInt( id.substring(3) );
+
+  var whackedMole = game.moles.filter( function(mole) {
+    return mole.position === position;
+  });
+   
+  //whackedMole is an array but will only have 1 value in it so just use index 0
+  game.moles[ game.moles.indexOf(whackedMole[0]) ].life = 0;
+
+  game.whacked++; //counts ALL moles
+
+  if (mole.hasClass("bonus")) {
+    game.score += game.level * 50;
+  }
+  else if (mole.hasClass("penalty")) {
+    game.score -= game.level * 20;
+  }
+  else {
+    game.score += game.level * 10;
+  }
+
+}

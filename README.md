@@ -7,8 +7,6 @@ Whack-A-Mole: simple html/js game
 
 TO DO:
 
--refactor click event handler and game loop into respective functions
-
 -implement game end after level 10 (option to reload? or auto reload? or what?)
 
 
