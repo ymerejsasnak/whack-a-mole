@@ -49,6 +49,14 @@ $(function() {
       //and create bonus mole at start of each level after 1
       game.moles.push( createMole(game.level, "bonus") );
     }
+
+    //check for and handle end game
+    if (game.level > 10) {
+      clearInterval(intervalID);
+
+      //end game code here
+
+    }
   }, 100);
 
 
