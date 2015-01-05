@@ -7,7 +7,12 @@ $(function() {
                whacked: 0,
                score: 0,
                moles: [],
-               ticks: 0 };
+               ticks: 0,
+               highScore: 0 };
+
+  if (localStorage.highScore) {
+    game.highScore = localStorage.highScore;
+  }
 
 
   //set up game board
@@ -53,6 +58,8 @@ $(function() {
     //check for and handle end game
     if (game.level > 10) {
       clearInterval(intervalID);
+      
+      localStorage.highScore = toString(game.score);
 
       //end game code here
 
@@ -120,6 +127,8 @@ var updateDisplay = function(game) {
 	$("#whacked").text(game.whacked);
 
 	$("#score").text(game.score);
+
+  $("high-score").text(game.highScore);
 }
 
 
