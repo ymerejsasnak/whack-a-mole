@@ -7,8 +7,7 @@ Whack-A-Mole: simple html/js game
 
 TO DO:
 
--finish end game code (option to reload? or auto reload? or what?)
-
+-finish end game code --- simple solution: just hide remaining moles so user can view scores and reload at their leisure
 
 
 -fix display so the status labels don't move when the numbers increase (ie 99 to 100)

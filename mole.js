@@ -10,9 +10,18 @@ $(function() {
                ticks: 0,
                highScore: 0 };
 
-  if (localStorage.highScore) {
-    game.highScore = localStorage.highScore;
+
+
+  if (localStorage.highScore === undefined) {
+    localStorage.highScore = "0";
   }
+
+  if (localStorage.highScore) {
+    game.highScore = parseInt(localStorage.highScore, 10);
+  }
+
+  $("#high-score").text(game.highScore);
+
 
 
   //set up game board
@@ -57,9 +66,13 @@ $(function() {
 
     //check for and handle end game
     if (game.level > 10) {
-      clearInterval(intervalID);
       
-      localStorage.highScore = toString(game.score);
+      if ( game.score > parseInt(localStorage.highScore) ) {
+        localStorage.highScore = game.score.toString();
+      }
+
+      clearInterval(intervalID);
+            
 
       //end game code here
 
@@ -128,7 +141,6 @@ var updateDisplay = function(game) {
 
 	$("#score").text(game.score);
 
-  $("high-score").text(game.highScore);
 }
 
 
